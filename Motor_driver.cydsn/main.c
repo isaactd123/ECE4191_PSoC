@@ -43,17 +43,19 @@ int main(void)
     Motor_2_IN_4_Write(0);
     PWM_2_WriteCompare(220);
     
+    // Encoder code (dk why no value showing, could be connection issue) 
     for(;;)
     {
         /* Place your application code here. */
         counter_1 = QuadDec_1_GetCounter();
-        //sprintf(string_1,"[Encoder] LEFT Motor 1: %d\n",counter_1);
+        sprintf(string_1,"LEFT Motor: %d\n",counter_1);
         UART_1_PutString(string_1);
+        //QuadDec_1_SetCounter(0);
         
         counter_2 = QuadDec_2_GetCounter();
-        sprintf(string_2,"[Encoder] RIGHT Motor 2: %d\n",counter_2);
+        sprintf(string_2,"RIGHT Motor: %d\n",counter_2);
         UART_1_PutString(string_2);
-        QuadDec_2_SetCounter(0);
+        //QuadDec_2_SetCounter(0);
         
         // QuadDec_1_SetCounter(0);    // This function reset the value after certain period of time
         CyDelay(100);
