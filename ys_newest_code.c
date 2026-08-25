@@ -14,7 +14,7 @@
 /* ---------- General configuration ---------- */
 
 #define PWM_MAX             255
-#define BASE_PWM            255
+#define BASE_PWM            180
 #define CONTROL_MS           50
 
 /* ---------- Straight-line PID ---------- */
@@ -34,19 +34,19 @@ float Kd = 0.00f;
  * WHEEL_DISTANCE_MM:
  * Centre-to-centre distance between the wheels.
  */
-#define COUNTS_PER_REV       2200.0f
+#define COUNTS_PER_REV       14645.17f
 #define WHEEL_DIAMETER_MM      56.0f
-#define WHEEL_DISTANCE_MM     180.0f
+#define WHEEL_DISTANCE_MM     215.0f
 
 /*
  * Adjust this after testing the actual turning angle.
  */
-#define TURN_CALIBRATION        1.0f
+#define TURN_CALIBRATION        .9f
 
 /* ---------- Point-turn controller ---------- */
 
 #define TURN_MAX_PWM          255
-#define TURN_MIN_PWM           255
+#define TURN_MIN_PWM           180
 #define TURN_POSITION_KP     0.50f
 #define TURN_SYNC_KP         0.15f
 #define TURN_CONTROL_MS        10
@@ -93,14 +93,14 @@ int limitTurnPWM(float value)
 
 void rightMotorForward(void)
 {
-    Motor_1_IN_1_Write(0);
-    Motor_1_IN_2_Write(1);
+    Motor_1_IN_1_Write(1);
+    Motor_1_IN_2_Write(0);
 }
 
 void rightMotorBackward(void)
 {
-    Motor_1_IN_1_Write(1);
-    Motor_1_IN_2_Write(0);
+    Motor_1_IN_1_Write(0);
+    Motor_1_IN_2_Write(1);
 }
 
 void leftMotorForward(void)
@@ -109,14 +109,14 @@ void leftMotorForward(void)
      * Your left motor is physically reversed relative
      * to the right motor.
      */
-    Motor_2_IN_3_Write(0);
-    Motor_2_IN_4_Write(1);
+    Motor_2_IN_3_Write(1);
+    Motor_2_IN_4_Write(0);
 }
 
 void leftMotorBackward(void)
 {
-    Motor_2_IN_3_Write(1);
-    Motor_2_IN_4_Write(0);
+    Motor_2_IN_3_Write(0);
+    Motor_2_IN_4_Write(1);
 }
 
 void stopMotors(void)
@@ -449,15 +449,15 @@ int main(void)
      * what you want the robot to do.
      */
 
+   
 
-    
 
     for (;;)
     {
         /*
          * Robot waits here after completing the sequence.
          */
-        pointTurn(45);
+         pointTurn(45);
     }
 }
 
